@@ -9,6 +9,7 @@ public class ClinicPlusContext : DbContext
     private readonly IConfiguration _configuration;
     
     public DbSet<Medico> Medicos => Set<Medico>();
+    public DbSet<Paciente> Pacientes => Set<Paciente>();
 
     public ClinicPlusContext(IConfiguration configuration)
     {
@@ -27,5 +28,6 @@ public class ClinicPlusContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new MedicoConfiguration());
+        modelBuilder.ApplyConfiguration(new PacienteConfiguration());
     }
 }

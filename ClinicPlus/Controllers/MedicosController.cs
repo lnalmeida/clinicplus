@@ -86,8 +86,6 @@ public class MedicosController : Controller
         });
     }
     
-    
-
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Update(int id, UpdateMedicoViewModel dados)

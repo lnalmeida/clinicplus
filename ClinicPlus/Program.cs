@@ -1,6 +1,8 @@
 using ClinicPlus.Contexts;
 using ClinicPlus.Validators.Medicos;
+using ClinicPlus.Validators.Pacientes;
 using ClinicPlus.ViewModels.Medicos;
+using ClinicPlus.ViewModels.Pacientes;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequ
 builder.Services.AddDbContext<ClinicPlusContext>();
 builder.Services.AddScoped<IValidator<AddMedicoViewModel>, AddMedicoValidator>();
 builder.Services.AddScoped<IValidator<UpdateMedicoViewModel>, UpdateMedicoValidator>();
+builder.Services.AddScoped<IValidator<AddPacienteViewModel>, AddPacienteValidator>();
+builder.Services.AddScoped<IValidator<UpdatePacienteViewModel>, UpdatePacienteValidator>();
 
 var app = builder.Build();
 

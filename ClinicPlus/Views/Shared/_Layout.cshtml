@@ -71,6 +71,13 @@
                   <p>Médicos</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/pacientes" class="nav-link">
+                  <i class="fas fa-user-injured nav-icon"></i>
+                  <p>Pacientes</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -107,6 +114,15 @@
 <script src="~/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="~/js/adminlte.min.js"></script>
+<!--JQuery Mask-->
+<script src="~/js/jquery.mask.min.js"></script>
 
+<script>
+  $(function (){
+    $('[mask]').each(function (e) {
+      $(this).mask($(this).attr('mask'));
+    });
+  });
+</script>
 </body>
 </html>
