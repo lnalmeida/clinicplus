@@ -53,13 +53,13 @@
                                         <span class="fas fa-edit"></span>
                                     </a>
                                     <a 
-                                        class="btn btn-danger btn-sm mr-1 deleteMedico" 
+                                        class="btn btn-danger btn-sm mr-1 deletePaciente" 
                                         title="Excluir informações"
-                                        id="deleteMedico"
+                                        id="deletePaciente"
                                         data-target="#deleteModal"
                                         data-toggle="modal"
                                         data-id="@p.Id"
-                                        data-path="@Url.Action("Delete", "Medicos", new {id=@p.Id})"
+                                        data-path="@Url.Action("Delete", "Pacientes", new {id=@p.Id})"
                                     >
                                         <span class="fas fa-trash"></span>
                                     </a>
@@ -108,7 +108,7 @@
             </div>
             <div class="modal-body">
                 <p>Deseja realmente excluir este registro? A ação não poderá ser desfeita.</p>
-                <input type="hidden" id="medicoIdToDelete" value="">
+                <input type="hidden" id="pacienteIdToDelete" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -141,25 +141,25 @@
 <script type="text/javascript">
     let pathToDelete;
     
-    $(".deleteMedico").click(function (e){
+    $(".deletePaciente").click(function (e){
         pathToDelete = $(this).data("path").toLowerCase();
     });
 
     $("#confirmDelete").click(function () {
-        var medicoId = pathToDelete.split('/')[3];
+        var pacienteId = pathToDelete.split('/')[3];
         $.ajax({
             url: pathToDelete,
             type: 'POST',
             success: function (result) {
                 if (result.success) {
-                    $('a[data-id="' + medicoId + '"]').closest('tr').remove();
+                    $('a[data-id="' + pacienteId + '"]').closest('tr').remove();
                     $('#deleteModal').modal('hide');
                 } else {
-                    showErrorModal('Erro ao excluir o médico.');
+                    showErrorModal('Erro ao excluir o paciente.');
                 }
             },
             error: function () {
-                showErrorModal('Erro ao excluir o médico.');
+                showErrorModal('Erro ao excluir o paciente.');
             }
         });
     });
