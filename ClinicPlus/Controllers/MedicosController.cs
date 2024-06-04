@@ -25,16 +25,25 @@ public class MedicosController : Controller
     // GET
     public IActionResult Index(string filter, int page = 1)
     {
-        var medicos = _context.Medicos
-            .Where(m => m.Nome.Contains(filter) || m.CRM.Contains(filter))
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
+        
+        var medicosQuery = _context.Medicos.AsQueryable();
+
+        if (!string.IsNullOrEmpty(filter))
+        {
+           medicosQuery = medicosQuery.Where(m => m.Nome.Contains(filter) || m.CRM.Contains(filter));
+        }
+        
+        var medicos = medicosQuery
             .Select(m =>
-            new ListarMedicosViewModel
-            {
-                Id = m.Id,
-                CRM = m.CRM,
-                Nome = m.Nome
-            }
-        );
+                new ListarMedicosViewModel
+                {
+                    Id = m.Id,
+                    CRM = m.CRM,
+                    Nome = m.Nome
+                }
+            );
+        
         ViewBag.Filter = filter;
         ViewBag.PageNumber = page;
         ViewBag.TotalPages = Math.Ceiling((decimal)medicos.Count() /  PAGE_SIZE);
@@ -44,6 +53,7 @@ public class MedicosController : Controller
     
     public IActionResult Add()
     {
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
         return View();
     }
     
@@ -72,6 +82,7 @@ public class MedicosController : Controller
     
     public IActionResult Update(int id)
     {
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
         var medico = _context.Medicos.Find(id);
         if (medico is null)
         {

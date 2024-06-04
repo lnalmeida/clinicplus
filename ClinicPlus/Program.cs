@@ -1,7 +1,9 @@
 using ClinicPlus.Contexts;
 using ClinicPlus.Validators.Medicos;
+using ClinicPlus.Validators.Monitoramentos;
 using ClinicPlus.Validators.Pacientes;
 using ClinicPlus.ViewModels.Medicos;
+using ClinicPlus.ViewModels.Monitoramentos;
 using ClinicPlus.ViewModels.Pacientes;
 using FluentValidation;
 
@@ -14,6 +16,10 @@ builder.Services.AddScoped<IValidator<AddMedicoViewModel>, AddMedicoValidator>()
 builder.Services.AddScoped<IValidator<UpdateMedicoViewModel>, UpdateMedicoValidator>();
 builder.Services.AddScoped<IValidator<AddPacienteViewModel>, AddPacienteValidator>();
 builder.Services.AddScoped<IValidator<UpdatePacienteViewModel>, UpdatePacienteValidator>();
+builder.Services.AddScoped<IValidator<AddMonitoramentoPacienteViewModel>, AddMonitoramentoValidator>();
+builder.Services.AddScoped<IValidator<UpdateMonitoramentoPacienteViewModel>, UpdateMonitoramentoValidator>();
+
+
 
 var app = builder.Build();
 

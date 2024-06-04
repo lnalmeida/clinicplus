@@ -4,6 +4,7 @@ using ClinicPlus.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicPlus.Migrations
 {
     [DbContext(typeof(ClinicPlusContext))]
-    partial class ClinicPlusContextModelSnapshot : ModelSnapshot
+    [Migration("20240527191243_EntityMonitoramentosPacientes")]
+    partial class EntityMonitoramentosPacientes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +82,7 @@ namespace ClinicPlus.Migrations
                     b.ToTable("Medicos", (string)null);
                 });
 
-            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentosPacientesController", b =>
+            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentoPaciente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +114,7 @@ namespace ClinicPlus.Migrations
 
                     b.HasIndex("IdPaciente");
 
-                    b.ToTable("MonitoramentosPacientesController", (string)null);
+                    b.ToTable("MonitoramentosPacientes", (string)null);
                 });
 
             modelBuilder.Entity("ClinicPlus.Models.Entities.Paciente", b =>
@@ -154,7 +157,7 @@ namespace ClinicPlus.Migrations
                     b.Navigation("Paciente");
                 });
 
-            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentosPacientesController", b =>
+            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentoPaciente", b =>
                 {
                     b.HasOne("ClinicPlus.Models.Entities.Paciente", "Paciente")
                         .WithMany("Monitoramentos")

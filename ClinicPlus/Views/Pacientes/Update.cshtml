@@ -25,13 +25,34 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Nome" class="control-label"></label>
-                            <input asp-for="Nome" type="text" class="form-control w-75" placeholder="Nome completo do médico">
+                            <input asp-for="Nome" type="text" class="form-control w-75" placeholder="Nome completo do paciente">
                             <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="DataNascimento" class="control-label"></label>
                             <input asp-for="DataNascimento" type="date" class="form-control w-25">
                             <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                        </div>
+                        <div class="row w-75 justify-content-between">
+                            <div class="col-md-6 d-flex flex-column">
+                                <div class="form-group">
+                                    <label asp-for="Alergias" class="control-label"></label>
+                                    <textarea asp-for="Alergias" rows="5" class="form-control" placeholder="Alergias"></textarea>
+                                    <span asp-validation-for="Alergias" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex flex-column pr-0 align-self-end">
+                                <div class="form-group">
+                                    <label asp-for="MedicamentosEmUso" class="control-label"></label>
+                                    <textarea asp-for="MedicamentosEmUso" rows="5" class="form-control" placeholder="Medicamentos em uso"></textarea>
+                                    <span asp-validation-for="MedicamentosEmUso" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CirurgiasRealizadas" class="control-label"></label>
+                            <textarea asp-for="CirurgiasRealizadas" rows="5" class="form-control w-75" placeholder="Cirurgias realizadas"></textarea>
+                            <span asp-validation-for="CirurgiasRealizadas" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="card-footer text-center">

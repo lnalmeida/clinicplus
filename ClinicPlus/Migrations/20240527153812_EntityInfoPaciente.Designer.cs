@@ -4,6 +4,7 @@ using ClinicPlus.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicPlus.Migrations
 {
     [DbContext(typeof(ClinicPlusContext))]
-    partial class ClinicPlusContextModelSnapshot : ModelSnapshot
+    [Migration("20240527153812_EntityInfoPaciente")]
+    partial class EntityInfoPaciente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,26 +34,23 @@ namespace ClinicPlus.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Alergias")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CirurgiasRealizadas")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
                     b.Property<string>("MedicamentosEmUso")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdPaciente")
                         .IsUnique();
 
-                    b.ToTable("InformacoesComplementaresPaciente", (string)null);
+                    b.ToTable("InformacoesComplementaresPaciente");
                 });
 
             modelBuilder.Entity("ClinicPlus.Models.Entities.Medico", b =>
@@ -77,41 +77,6 @@ namespace ClinicPlus.Migrations
                         .IsUnique();
 
                     b.ToTable("Medicos", (string)null);
-                });
-
-            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentosPacientesController", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataAfericao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FrequenciaCardiaca")
-                        .HasColumnType("TYNYINT");
-
-                    b.Property<int>("IdPaciente")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PressaoArterial")
-                        .IsRequired()
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar(7)");
-
-                    b.Property<int>("Saturacao")
-                        .HasColumnType("TYNYINT");
-
-                    b.Property<decimal>("Temperatura")
-                        .HasColumnType("DECIMAL(3,1)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdPaciente");
-
-                    b.ToTable("MonitoramentosPacientesController", (string)null);
                 });
 
             modelBuilder.Entity("ClinicPlus.Models.Entities.Paciente", b =>
@@ -154,22 +119,9 @@ namespace ClinicPlus.Migrations
                     b.Navigation("Paciente");
                 });
 
-            modelBuilder.Entity("ClinicPlus.Models.Entities.MonitoramentosPacientesController", b =>
-                {
-                    b.HasOne("ClinicPlus.Models.Entities.Paciente", "Paciente")
-                        .WithMany("Monitoramentos")
-                        .HasForeignKey("IdPaciente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Paciente");
-                });
-
             modelBuilder.Entity("ClinicPlus.Models.Entities.Paciente", b =>
                 {
                     b.Navigation("InformacoesPaciente");
-
-                    b.Navigation("Monitoramentos");
                 });
 #pragma warning restore 612, 618
         }

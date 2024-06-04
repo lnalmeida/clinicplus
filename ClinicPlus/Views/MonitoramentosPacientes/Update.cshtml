@@ -1,0 +1,55 @@
+@model ClinicPlus.ViewModels.Monitoramentos.UpdateMonitoramentoPacienteViewModel
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><span class="ml-1 mr-2"><i class="fas fa-user-injured"></i></span>Editar Sinais Vitais</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Update">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Paciente: @ViewBag.NomePaciente</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="DataAfericao" class="control-label"></label>
+                            <input asp-for="DataAfericao" class="form-control w-25">
+                            <span asp-validation-for="DataAfericao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PressaoArterial" class="control-label"></label>
+                            <input id="crm" asp-for="PressaoArterial" type="text" class="form-control w-25" placeholder="999/999">
+                            <span asp-validation-for="PressaoArterial" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FrequenciaCardiaca" class="control-label"></label>
+                            <input asp-for="FrequenciaCardiaca" type="text" class="form-control w-25" placeholder="999">
+                            <span asp-validation-for="FrequenciaCardiaca" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Temperatura" class="control-label"></label>
+                            <input asp-for="Temperatura" type="text" class="form-control w-25" placeholder="99,9">
+                            <span asp-validation-for="Temperatura" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Saturacao" class="control-label"></label>
+                            <input asp-for="Saturacao" type="text" class="form-control w-25" placeholder="999">
+                            <span asp-validation-for="Saturacao" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary w-25">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

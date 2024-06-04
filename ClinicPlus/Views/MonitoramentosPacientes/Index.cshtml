@@ -1,9 +1,10 @@
-@model IEnumerable<ClinicPlus.ViewModels.Pacientes.ListarPacienteViewModel>
+@model IEnumerable<ClinicPlus.ViewModels.Monitoramentos.ListarMonitoramentoPacienteViewModel>
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1><span class="ml-1 mr-2"><i class="fas fa-user-injured"></i></span>Pacientes</h1>
+                <h1><span class="ml-1 mr-2"><i class="fas fa-heartbeat"></i></span>Sinais vitais</h1>
             </div>
         </div>
     </div>
@@ -15,18 +16,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <form asp-action="Index">
-                            <div class="input-group input-group-sm" style="width: 300px;">
-                                <input type="text" class="form-control" placeholder="Buscar paciente" name="filter" value="@ViewBag.Filter">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <a href="/pacientes/add" class="btn btn-outline-primary btn-sm">
-                            Novo paciente
+                        <h5>Paciente: @ViewBag.NomePaciente</h5>
+                        <a href="/monitoramento/add?idPaciente=@ViewBag.IdPaciente" class="btn btn-outline-primary btn-sm">
+                            Novo Monitoramento
                             <span>
                                 <i class="fas fa-plus-circle"></i>
                             </span>
@@ -37,32 +29,36 @@
                     <table class="table table-hover table-head-fixed text-nowrap">
                         <thead>
                         <tr>
-                            <th style="width: 200px;">CPF</th>
-                            <th>Nome</th>
+                            <th style="width: 150px;">Data</th>
+                            <th>P.A.</th>
+                            <th>F.C.</th>
+                            <th>Temperatura</th>
+                            <th>SpO2</th>
                             <th style="width: 40px;"></th>
                         </tr>
                         </thead>
                         <Tbody>
-                        @foreach (var p in Model)
+                        @foreach (var mp in Model)
                         {
                             <tr>
-                                <td mask="999.999.999-99">@p.Cpf</td>
-                                <td>@p.Nome</td>
+                                <td>@mp.DataAfericao.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@mp.PressaoArterial</td>
+                                <th>@mp.FrequenciaCardiaca bpm</th>
+                                <th>@mp.Temperatura º</th>
+                                <th>@mp.Saturacao %</th>
                                 <td>
-                                    <a href="/monitoramento?idPaciente=@p.Id" class="btn btn-secondary btn-sm mr-1" title="Sinais vitais">
-                                        <span class="fas fa-list-alt"></span>
-                                    </a>
-                                    <a href="/pacientes/update/@p.Id" class="btn btn-secondary btn-sm mr-1" title="Editar informações">
+                                    <a href="/monitoramento/update/@mp.Id" class="btn btn-secondary btn-sm mr-1" title="Editar informações de monitoramento">
                                         <span class="fas fa-edit"></span>
                                     </a>
-                                    <a
-                                        class="btn btn-danger btn-sm mr-1 deletePaciente"
-                                        title="Excluir informações"
-                                        id="deletePaciente"
+                                    <a 
+                                        class="btn btn-danger btn-sm mr-1 deleteMonitoramento" 
+                                        title="Excluir informações de monitoramento"
+                                        id="deleteMonitoramento"
                                         data-target="#deleteModal"
                                         data-toggle="modal"
-                                        data-id="@p.Id"
-                                        data-path="@Url.Action("Delete", "Pacientes", new { id = @p.Id })">
+                                        data-id="@mp.Id"
+                                        data-path="@Url.Action("Delete", "MonitoramentosPacientes", new {id=@mp.Id})"
+                                    >
                                         <span class="fas fa-trash"></span>
                                     </a>
                                 </td>
@@ -78,7 +74,7 @@
                             @if (ViewBag.PageNumber > 1)
                             {
                                 <li class="page-item page-link">
-                                    <a href="@Url.Action("Index", "Pacientes", new { filter = @ViewBag.Filter, page = @ViewBag.PageNumber - 1 })" class="page-link">
+                                    <a href="@Url.Action("Index", "MonitoramentosPacientes", new { filter = @ViewBag.Filter, page = @ViewBag.PageNumber - 1 })" class="page-link">
                                         <i class="fas fa-chevron-circle-left "></i>
                                     </a>
                                 </li>
@@ -87,7 +83,7 @@
                             @if (@ViewBag.PageNumber < @ViewBag.TotalPages)
                             {
                                 <li class="page-item page-link">
-                                    <a href="@Url.Action("Index", "Pacientes", new { filter = @ViewBag.Filter, page = @ViewBag.PageNumber + 1 })" class="page-link">
+                                    <a href="@Url.Action("Index", "MonitoramentosPacientes", new { filter = @ViewBag.Filter, page = @ViewBag.PageNumber + 1 })" class="page-link">
                                         <i class="fas fa-chevron-circle-right"></i>
                                     </a>
                                 </li>
@@ -105,12 +101,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-5" id="staticBackdropLabel">Excluir Paciente</h4>
+                <h4 class="modal-title fs-5" id="staticBackdropLabel">Excluir Monitoramento</h4>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Deseja realmente excluir este registro? A ação não poderá ser desfeita.</p>
-                <input type="hidden" id="pacienteIdToDelete" value="">
+                <input type="hidden" id="monitoramentoIdToDelete" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -143,25 +139,25 @@
 <script type="text/javascript">
     let pathToDelete;
     
-    $(".deletePaciente").click(function (e){
+    $(".deleteMonitoramento").click(function (e){
         pathToDelete = $(this).data("path").toLowerCase();
     });
 
     $("#confirmDelete").click(function () {
-        var pacienteId = pathToDelete.split('/')[3];
+        var monitoramentoId = pathToDelete.split('=')[1];
         $.ajax({
             url: pathToDelete,
             type: 'POST',
             success: function (result) {
                 if (result.success) {
-                    $('a[data-id="' + pacienteId + '"]').closest('tr').remove();
+                    $('a[data-id="' + monitoramentoId + '"]').closest('tr').remove();
                     $('#deleteModal').modal('hide');
                 } else {
-                    showErrorModal('Erro ao excluir o paciente.');
+                    showErrorModal('Erro ao excluir o registro.');
                 }
             },
             error: function () {
-                showErrorModal('Erro ao excluir o paciente.');
+                showErrorModal('Erro ao excluir o registro.');
             }
         });
     });

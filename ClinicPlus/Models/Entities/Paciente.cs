@@ -6,4 +6,6 @@ public class Paciente
     public string Cpf { get; set; } = string.Empty;
     public string Nome { get; set; } = string.Empty;
     public DateTime DataNascimento { get; set; }
+    public InformacoesComplementaresPaciente? InformacoesPaciente { get; set; }
+    public ICollection<MonitoramentoPaciente> Monitoramentos { get; set; } = null!;
 }
