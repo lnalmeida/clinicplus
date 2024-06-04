@@ -53,7 +53,7 @@ public class MedicosController : Controller
     
     public IActionResult Add()
     {
-        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Medicos");
         return View();
     }
     
@@ -82,7 +82,7 @@ public class MedicosController : Controller
     
     public IActionResult Update(int id)
     {
-        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Medicos");
         var medico = _context.Medicos.Find(id);
         if (medico is null)
         {

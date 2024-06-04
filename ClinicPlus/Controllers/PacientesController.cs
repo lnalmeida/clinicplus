@@ -28,6 +28,7 @@ public class PacientesController : Controller
     // GET
     public IActionResult Index(string filter, int page = 1)
     {
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Home");
         var pacientesQuery = _context.Pacientes.AsQueryable();
         
         if (!string.IsNullOrEmpty(filter))
@@ -54,6 +55,7 @@ public class PacientesController : Controller
 
     public IActionResult Add()
     {
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Pacientes");
         return View();
     }
 
@@ -86,6 +88,7 @@ public class PacientesController : Controller
 
     public IActionResult Update(int id)
     {
+        ViewBag.ReturnUrl = Url.Action(nameof(Index), "Pacientes");
         var paciente = _context.Pacientes.Find(id);
         if (paciente is null)
         {
