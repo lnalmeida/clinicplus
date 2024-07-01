@@ -13,7 +13,9 @@ public class ClinicPlusContext : DbContext
     public DbSet<InformacoesComplementaresPaciente> InformacoesComplementaresPacientes =>
         Set<InformacoesComplementaresPaciente>();
     public DbSet<MonitoramentoPaciente> MonitoramentosPacientes => Set<MonitoramentoPaciente>();
-
+    public DbSet<Especialidade> Especialidades => Set<Especialidade>();
+    public DbSet<Consulta> Consultas => Set<Consulta>();
+    
     public ClinicPlusContext(IConfiguration configuration)
     {
         _configuration = configuration;
@@ -34,6 +36,8 @@ public class ClinicPlusContext : DbContext
         modelBuilder.ApplyConfiguration(new PacienteConfiguration());
         modelBuilder.ApplyConfiguration(new InformacoesComplementaresPacienteConfiguration());
         modelBuilder.ApplyConfiguration(new MonitoramentoPacienteConfiguration());
+        modelBuilder.ApplyConfiguration(new EspecialidadeConfiguration());
+        modelBuilder.ApplyConfiguration(new ConsultaConfiguration());
 
     }
 }

@@ -1,0 +1,30 @@
+@using System.Globalization
+@model IEnumerable<ClinicPlus.ViewModels.Consultss.ListarConsultasViewModel>
+
+<link rel="stylesheet" href="css/calendar.css"/>
+<div>
+    <div class="header">
+        <div class="left">
+            <button class="btn btn-primary" id="prev">Ant</button>
+            <button class="btn btn-primary" id="next">Próx</button>
+        </div>
+        <h1 class="center" id="title">
+            
+        </h1>
+        <div class="right">
+            <select id="select">
+                <option value="dayGridDay">
+                    Dia
+                </option>
+                <option value="dayGridWeek" selected>
+                    Semana
+                </option>
+                <option value="dayGridMonth">
+                    Mês
+                </option>
+            </select>
+        </div>
+    </div>
+    <div id='calendar'></div>
+</div>
+<script type="text/ecmascript" src="js/calendar.js"></script>

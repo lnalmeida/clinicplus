@@ -42,7 +42,7 @@ namespace ClinicPlus.Migrations
                 oldNullable: true);
 
             migrationBuilder.CreateTable(
-                name: "MonitoramentosPacientesController",
+                name: "MonitoramentosPacientes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -75,7 +75,7 @@ namespace ClinicPlus.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MonitoramentosPacientesController");
+                name: "MonitoramentosPacientes");
 
             migrationBuilder.AlterColumn<string>(
                 name: "MedicamentosEmUso",

@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="~/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="~/css/adminlte.min.css">
+  <!-- Fullcalendar -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/bootstrap/main.min.css" integrity="sha512-XnLECwClZYY+j+cdARYZVKjNp2b3S+k52QUReqmZuKiARsAjc3YDlT7cKYBKzjk0zgszUuR39VjC8o/ve5gQZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/core/main.min.css" integrity="sha512-sLe3xBqvQ/g6tG5NbanpA3wrcvvXe7BG89OZJcDUtv/uUPYti8yaJaIgmOJmxlP0RDM29EFr2S9XyOQBua5jQQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/daygrid/main.min.css" integrity="sha512-eUkG6SyY2M0OKuCLStqsb2zh28fEuZ/2X4TLbHckIWTshxcG/9JG251HBGHvW2zS8LpsR3jdOFw43OnWrRDcGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/list/main.min.css" integrity="sha512-iP6IUAMPPp9qR/XdvA7WPVltagiXSZmdyJthf6lSJmELCRPhmqjf7qMBXEjV8wNwAh7z17V+b9u+WzMmp0L8Uw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/timegrid/main.min.css" integrity="sha512-U0iTL18Lpl/viik2DDQ5UBV99/VZFiSCH0e4ER+Zxu4Xct3oYyvu+W1lU3c2GKtpHlEKaAG2pj5/bm2Aaj/ERA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -81,6 +87,36 @@
                   <p>Pacientes</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/especialidades" class="nav-link">
+                  <i class="fas fa-star nav-icon"></i>
+                  <p>Especialidades</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-laptop-medical"></i>
+              <p>
+                Operações
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/consultas" class="nav-link">
+                  <i class="fas fa-notes-medical nav-icon"></i>
+                  <p>Consultas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/calendar" class="nav-link">
+                  <i class="fas fa-calendar nav-icon"></i>
+                  <p>Calendário</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -119,6 +155,19 @@
 <script src="~/js/adminlte.min.js"></script>
 <!--JQuery Mask-->
 <script src="~/js/jquery.mask.min.js"></script>
+
+<!-- FullCalendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/core/locales-all.min.js" integrity="sha512-f11i9SZrLr+tSr+CgOWFzqlP0odVAgYabmVFwW8Sj05weWmmX6bcdqa71fIYUboszkjz/WVPWF3z6aA3Sh94dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/core/main.min.js" integrity="sha512-RxCKBWERQkr5xhNIfhhDfMpJk+h6JHeNAOIeopJSc0z/9CR9yccDtHEkdhO20XsX8J0CJufcs7KwhSMvoK8t5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/daygrid/main.min.js" integrity="sha512-qa7j0OEQOhk6I1yOeZarvP3su1WgDFak30FqN+w+DNrJDpNSt6MQl+uCJ4c/+P/AKEN7HP0YmNmEV6gGzx8Pdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/google-calendar/main.min.js" integrity="sha512-YfRh25gcv4nVR/hcnG+AaA+YGkKQJ3WNOEz5ojoN0CCaeOp8bBBBI/Aq/4Nkn5nTkL1atfxNBad1edG7sSMmxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/interaction/main.min.js" integrity="sha512-Vfm/nu9YZPaTa+tQLo+0MiaqqlJRYiS+T+71qKjufPDJqs0ZvhwjgJOKh/gSQrB2i/YIgraIkd+AcfbBb1cPwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/list/main.min.js" integrity="sha512-tRbwCR1KUGyrpFxjhE4dt0EnB20oebllw358zbFtHhOa982Hhw/8t7nJV8noLKnA0OFXaB+6MNSr8aimcIalBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/luxon/main.min.js" integrity="sha512-t/QQ5NK6DQ4n4RBrjbWmpKdNanP1/hgH7r/KfvagslYusMRFR8xjvFjTtngpXGIHG8W/n3WcKaPF//drrPErew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/moment-timezone/main.min.js" integrity="sha512-ObWRwJYHQEeT8Jje1h6RXg3TZp7vFdP/KVvdyfuTlgE+tXMn0jiyYK3t6FlCTE4CANoU6gsC4Y38lMuKlZ7fpA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/moment/main.min.js" integrity="sha512-6pnYfMS43CCRuafcNbKlgFNpWXJfucwpt4K0tgA3BcwK8X/oudomUNNWc65f3tRHSHmEC1HxRkg1ppTkXCesiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/rrule/main.min.js" integrity="sha512-9A5woG2AjhB7Hv7akae/v9nK8bqIL0s9wn0nQrvE/arg3LIoFJQt6444N8C/i7TZs77j5JsKD5ATTrHqfoR4Mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.1/timegrid/main.min.js" integrity="sha512-KAPZG2rdzd+ivZcPb5JyFIBZaN3S/ionK66uaz9fdbhagq/shO8+hy+ppNso5Q+gxDuE1BpxtjoX5EAZchB38A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
   $(function (){

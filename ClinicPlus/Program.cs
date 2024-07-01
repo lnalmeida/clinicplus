@@ -1,7 +1,12 @@
 using ClinicPlus.Contexts;
+using ClinicPlus.Validators.Consultas;
+using ClinicPlus.Validators.Especialidades;
 using ClinicPlus.Validators.Medicos;
 using ClinicPlus.Validators.Monitoramentos;
 using ClinicPlus.Validators.Pacientes;
+using ClinicPlus.ViewModels;
+using ClinicPlus.ViewModels.Consultas;
+using ClinicPlus.ViewModels.Consultss;
 using ClinicPlus.ViewModels.Medicos;
 using ClinicPlus.ViewModels.Monitoramentos;
 using ClinicPlus.ViewModels.Pacientes;
@@ -18,6 +23,10 @@ builder.Services.AddScoped<IValidator<AddPacienteViewModel>, AddPacienteValidato
 builder.Services.AddScoped<IValidator<UpdatePacienteViewModel>, UpdatePacienteValidator>();
 builder.Services.AddScoped<IValidator<AddMonitoramentoPacienteViewModel>, AddMonitoramentoValidator>();
 builder.Services.AddScoped<IValidator<UpdateMonitoramentoPacienteViewModel>, UpdateMonitoramentoValidator>();
+builder.Services.AddScoped<IValidator<AddEspecialidadeViewModel>, AddEspecialidadeValidator>();
+builder.Services.AddScoped<IValidator<UpdateEspecialidadeViewModel>, UpdateEspecialidadeValidator>();
+builder.Services.AddScoped<IValidator<AddConsultaViewModel>, AddConsultaValidator>();
+builder.Services.AddScoped<IValidator<UpdateConsultaViewModel>, UpdateConsultaValidator>();
 
 
 

@@ -1,0 +1,85 @@
+@model ClinicPlus.ViewModels.Consultas.AddConsultaViewModel
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><span class="ml-1 mr-2"><i class="fas fa-notes-medical"></i></span>Agendar consulta</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Add">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Data" class="control-label"></label>
+                            <input id="data" asp-for="Data" class="form-control w-25">
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EspecialidadeId" class="control-label">Especialidade</label>
+                            <select id="especialidade" name="EspecialidadeId" class="form-control w-25" asp-items="@ViewBag.ListaEspecialidades"></select>
+                            <span asp-validation-for="EspecialidadeId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MedicoId" class="control-label"></label>
+                            <select id="medico" name="MedicoId" class="form-control w-25">
+                                <option value="">Selecione o médico</option>
+                            </select>
+                            <span asp-validation-for="MedicoId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PacienteId" class="control-label"></label>
+                            <select id="paciente" name="PacienteId" class="form-control w-25" asp-items="ViewBag.ListaPacientes"></select>
+                            <span asp-validation-for="PacienteId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary w-25">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var especialidadeId = 1;
+        var medicoDropdown = $('#medico');
+        $.ajax({
+            url: '@Url.Action("GetMedicosByEspecialidade", "Consultas")',
+            type: 'GET',
+            data: { especialidadeSelecionadaId: especialidadeId },
+            success: function (response) {
+                $.each(response,  function(index, medico) {
+                    medicoDropdown.append('<option value="' + medico.id + '">' + medico.nome + '</option>');
+                });
+            }
+        });
+        $('#especialidade').change(function () {
+          especialidadeId = $(this).val();
+          medicoDropdown.empty();
+          medicoDropdown.append('<option value=""> Selecione o medico</option>');
+          if (especialidadeId) {
+            $.ajax({
+                url: '@Url.Action("GetMedicosByEspecialidade", "Consultas")',
+                type: 'GET',
+                data: { especialidadeSelecionadaId: especialidadeId },
+                success: function (response) {
+                    $.each(response,  function(index, medico) {
+                        medicoDropdown.append('<option value="' + medico.id + '">' + medico.nome + '</option>');
+                    });
+                }
+            });
+          }
+        });
+    });
+</script>

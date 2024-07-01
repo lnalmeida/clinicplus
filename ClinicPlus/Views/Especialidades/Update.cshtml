@@ -1,0 +1,39 @@
+@model ClinicPlus.ViewModels.UpdateEspecialidadeViewModel
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><span class="ml-1 mr-2"><i class="fas fa-star"></i></span>Editar especialidade</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Update">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Titulo" class="control-label"></label>
+                            <input id="crm" asp-for="Titulo" type="text" class="form-control w-25" placeholder="Título da especialidade">
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cor" class="control-label"></label>
+                            <input asp-for="Cor" type="color" class="form-control w-25" placeholder="Cor da especialidade">
+                            <span asp-validation-for="Cor" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary w-25">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

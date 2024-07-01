@@ -21,5 +21,9 @@ public class MedicoConfiguration : IEntityTypeConfiguration<Medico>
         builder.Property(m => m.Nome)
             .IsRequired()
             .HasMaxLength(150);
+
+        builder.HasOne(m => m.Especialidade)
+            .WithMany(e => e.Medicos)
+            .HasForeignKey(m => m.EspecialidadeId);
     }
 }

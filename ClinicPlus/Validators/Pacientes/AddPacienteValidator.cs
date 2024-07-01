@@ -24,9 +24,4 @@ public class AddPacienteValidator : AbstractValidator<AddPacienteViewModel>
             .Must(dataNascimento => dataNascimento <= DateTime.Now.AddYears(-18))
             .WithMessage("O paciente deve ter pelo menos 18 anos completos");
     }
-
-    private bool isValidCPF(string cpf)
-    {
-        return true;
-    }
 }
