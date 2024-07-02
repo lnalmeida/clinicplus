@@ -7,68 +7,25 @@ document.addEventListener('DOMContentLoaded', function () {
         editable: true,
         locale: 'pt-br',
         defaultDate: Date.now(),
-        events: [
-            {
-                title: 'Business Lunch',
-                start: '2024-06-03T13:00:00',
-                constraint: 'businessHours'
-            },
-            {
-                title: 'Meeting',
-                start: '2024-06-13T11:00:00',
-                constraint: 'availableForMeeting', // defined below
-                color: '#257e4a'
-            },
-            {
-                title: 'Conference',
-                start: '2024-06-18',
-                end: '2024-06-20'
-            },
-            {
-                title: 'Party Date',
-                start: '2024-06-29T20:00:00'
-            },
-
-            // areas where "Meeting" must be dropped
-            {
-                groupId: 'availableForMeeting',
-                start: '2024-06-11T10:00:00',
-                end: '2024-06-11T16:00:00',
-                display: 'background'
-            },
-            {
-                groupId: 'availableForMeeting',
-                start: '2024-06-13T10:00:00',
-                end: '2024-06-13T16:00:00',
-                display: 'background'
-            },
-
-            // red areas where no events can be dropped
-            {
-                title:'Teste 10',
-                start: '2024-06-24',
-                end: '2024-06-28',
-                overlap: false,
-                display: 'background',
-                color: '#ff9f89'
-            },
-            {
-                title: 'meu evento teste',
-                start: '2024-06-06T08:30:00',
-                end: '2024-06-06T12:00:00',
-                overlap: false,
-                display: 'background',
-                color: '#ff9f89'
-            },
-            {
-                title: 'meu evento teste 2',
-                start: '2024-06-06T08:30:00',
-                end: '2024-06-06T09:00:00',
-                overlap: false,
-                display: 'background',
-                color: '#ff9f89'
-            }
-        ],
+        events: function (start, end, timezone, callback) {
+            $.ajax({
+                url: '@Url.Action("LoadCalendar","Consultas")',
+                type: 'GET',
+                success: function(response){
+                    var eventes = [];
+                    $(response).each(function (){
+                        events.push({
+                            id: this.id,
+                            title: this.eventTitle,
+                            start: this.startEvent,
+                            end: this.endEvent,
+                            color: this.color
+                        });         
+                    });
+                    callback(events);
+                }
+            });
+        },
         viewRender: (view) => {
             let date
             switch (view.type) {
@@ -100,5 +57,4 @@ document.addEventListener('DOMContentLoaded', function () {
     $("#select").on('change', function (event) {
         calendar.changeView(this.value)
     })
-
 });

@@ -177,6 +177,31 @@ public class ConsultasController : Controller
         }
     }
 
+    #region Calendar
+
+    [HttpGet("/calendar")]
+    public IActionResult Calendar()
+    {
+        return View();
+    }
+    
+    public JsonResult LoadCalendar()
+    {
+        var consultas = _context.Consultas.AsNoTracking()
+            .Select(c => new CalendarioConsultaViewModel
+            {
+                Id = c.Id,
+                EventTitle = c.Paciente.Nome,
+                StartEvent = c.Data,
+                EndEvent = c.Data.AddMinutes(30),
+                Color = c.Especialidade.Cor
+            }).ToList();
+
+        return Json(consultas);
+    }
+
+    #endregion
+
 
 
     #region Ajax Functions
